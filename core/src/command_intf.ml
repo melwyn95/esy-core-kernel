@@ -50,10 +50,6 @@ end
 module type For_unix = sig
   module Version_util : Version_util
 
-  module Signal : sig
-    type t
-  end
-
   module Thread : sig
     type t
 
@@ -91,8 +87,6 @@ module type For_unix = sig
 
     val getpid : unit -> Pid.t
     val close : ?restart:bool -> File_descr.t -> unit
-    val open_process_in : string -> In_channel.t
-    val close_process_in : In_channel.t -> Exit_or_signal.t
     val in_channel_of_descr : File_descr.t -> In_channel.t
     val putenv : key:string -> data:string -> unit
     val unsetenv : string -> unit

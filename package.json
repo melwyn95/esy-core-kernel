@@ -39,6 +39,7 @@
         "@opam/ppx_expect": "*",
         "@opam/ppx_bench": "*",
         "@opam/ppx_bin_prot": "*",
+        "@opam/spawn": "*",
 
         "@opam/dune": "*"
     },
@@ -74,7 +75,8 @@
         "@opam/ppx_sexp_value": "github:janestreet/ppx_sexp_value:ppx_sexp_value.opam#38a63408f818294ef08932f9c35b27a576f85d59",
         "@opam/ppx_expect": "github:janestreet/ppx_expect:ppx_expect.opam#56cfa602173ff920472a5081e774ca0f84b95eec",
         "@opam/ppx_bench": "github:janestreet/ppx_bench:ppx_bench.opam#80afcfbed1c0e09c610edbf248308e2adfde14eb",
-        "@opam/ppx_bin_prot": "github:janestreet/ppx_bin_prot:ppx_bin_prot.opam#686782d0616f55caecfd87a5c861a605944ef8f8"
+        "@opam/ppx_bin_prot": "github:janestreet/ppx_bin_prot:ppx_bin_prot.opam#686782d0616f55caecfd87a5c861a605944ef8f8",
+        "@opam/spawn": "github:janestreet/spawn:spawn.opam#ed7014137d52c4a8ce09c10a07b028a3561aae7c"
       },
     "devDependencies": {
       "@opam/ocaml-lsp-server": "*",

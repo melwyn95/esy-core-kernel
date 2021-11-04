@@ -33,6 +33,7 @@ depends: [
   "typerep"
   "variantslib"
   "base-threads"
+  "spawn"
   "dune"                {>= "2.0.0"}
 ]
 synopsis: "Industrial strength alternative to OCaml's standard library"
