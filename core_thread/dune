@@ -1,0 +1,3 @@
+(library (name core_thread) (public_name core_kernel.core_thread)
+ (libraries core core_kernel.caml_threads)
+ (preprocess (pps ppx_jane)))

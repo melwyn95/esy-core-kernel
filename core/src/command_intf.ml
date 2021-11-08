@@ -50,6 +50,10 @@ end
 module type For_unix = sig
   module Version_util : Version_util
 
+  module Signal : sig
+    type t
+  end
+
   module Thread : sig
     type t
 
