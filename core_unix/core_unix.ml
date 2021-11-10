@@ -67,6 +67,9 @@
      let equal (t1 : t) t2 = phys_equal t1 t2
    end
    let fd_r fd = ("fd", File_descr.sexp_of_t fd)
+
+
+   let in_channel_of_descr = Unix.in_channel_of_descr
    
    let unary ?restart make_r f =
      ();
@@ -215,6 +218,38 @@
    end
    
    type env = Env.t [@@deriving sexp]
+   let prog_r prog = ("prog", atom prog)
+   let args_r argv = ("argv", sexp_of_array atom argv)
+   let env_r env = ("env", sexp_of_array atom env)
+let execv ~prog ~argv =
+  improve (fun () -> Unix.execv ~prog ~args:argv)
+    (fun () -> [prog_r prog; args_r argv])
+;;
+
+let execve ~prog ~argv ~env =
+  improve (fun () -> Unix.execve ~prog ~args:argv ~env)
+    (fun () -> [prog_r prog; args_r argv; env_r env])
+;;
+
+let execvp ~prog ~argv =
+  improve (fun () -> Unix.execvp ~prog ~args:argv)
+    (fun () -> [prog_r prog; args_r argv])
+;;
+
+let execvpe ~prog ~argv ~env =
+  improve (fun () -> Unix.execvpe ~prog ~args:argv ~env)
+    (fun () -> [prog_r prog; args_r argv; env_r env])
+;;
+
+let exec ~prog ~argv ?(use_path = true) ?env () =
+  let argv = Array.of_list argv in
+  let env = Option.map env ~f:Env.expand_array in
+  match use_path, env with
+  | false, None -> execv ~prog ~argv
+  | false, Some env -> execve ~prog ~argv ~env
+  | true, None -> execvp ~prog ~argv
+  | true, Some env -> execvpe ~prog ~argv ~env
+;;
    
    type wait_flag =
      Unix.wait_flag =

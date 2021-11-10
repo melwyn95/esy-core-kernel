@@ -2269,7 +2269,7 @@ module For_unix (M : For_unix) = struct
      out command information. *)
   let getenv_and_clear var =
     let value = Unix.unsafe_getenv var in
-    if Option.is_some value then Unix.unsetenv var;
+    (* if Option.is_some value then Unix.core_unix_unsetenv var; *)
     value
   ;;
 

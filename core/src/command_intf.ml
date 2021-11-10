@@ -93,7 +93,7 @@ module type For_unix = sig
     val close : ?restart:bool -> File_descr.t -> unit
     val in_channel_of_descr : File_descr.t -> In_channel.t
     val putenv : key:string -> data:string -> unit
-    val unsetenv : string -> unit
+    (* val unsetenv : string -> unit *)
     val unsafe_getenv : string -> string option
 
     type nonrec env = env

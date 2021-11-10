@@ -1,0 +1,4 @@
+
+(library (name command_unix) (public_name core_kernel.command_unix)
+ (libraries core core_kernel.core_thread version_util core_kernel.core_unix)
+ (preprocess (pps ppx_jane)))
