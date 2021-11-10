@@ -2095,9 +2095,9 @@ and kind_of_sexpable
 module type For_version_info = sig
   module Version_util : Version_util
 
-  module Time : sig
+  (* module Time : sig
     type t = Time_float.t [@@deriving sexp_of]
-  end
+  end *)
 end
 
 module Version_info (M : For_version_info) = struct
@@ -2166,14 +2166,14 @@ module Version_info (M : For_version_info) = struct
 
   let default_version = lazy (normalize_version_lines Version_util.version_list)
 
-  let default_build_info =
+  (* let default_build_info =
     lazy
       (* lazy to avoid loading all the time zone stuff at toplevel *)
       (Version_util.reprint_build_info Time.sexp_of_t)
-  ;;
+  ;; *)
 end
 
-let%test_module "Version_info" =
+(* let%test_module "Version_info" =
   (module struct
     module Version_info = Version_info (struct
         module Version_util = struct
@@ -2200,7 +2200,7 @@ let%test_module "Version_info" =
       [%expect {| some build info |}]
     ;;
   end)
-;;
+;; *)
 
 let rec summary = function
   | Base x -> x.summary
@@ -2798,7 +2798,7 @@ module For_unix (M : For_unix) = struct
     let build_info =
       match build_info with
       | Some v -> lazy v
-      | None -> Version_info.default_build_info
+      | None -> lazy ""(*Version_info.default_build_info*)
     in
     let version =
       match version with
@@ -2856,7 +2856,7 @@ module For_unix (M : For_unix) = struct
       ~extend:None
       ~maybe_new_comp_cword:None
       ~version:Version_info.default_version
-      ~build_info:Version_info.default_build_info
+      ~build_info:(lazy "")
       ~verbose_on_parse_error:None
       ~when_parsing_succeeds:Fn.id
       ~complete_subcommands:None

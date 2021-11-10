@@ -66,9 +66,9 @@ module type For_unix = sig
     val join : t -> unit
   end
 
-  module Time : sig
+  (* module Time : sig
     type t = Time_float.t [@@deriving sexp_of]
-  end
+  end *)
 
   module Unix : sig
     module File_descr : sig
